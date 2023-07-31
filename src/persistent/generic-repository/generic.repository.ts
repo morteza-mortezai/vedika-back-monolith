@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { DeleteResult, FindOptionsWhere, ObjectLiteral, Repository } from 'typeorm'
+
 @Injectable()
 export class GenericRepository<T extends ObjectLiteral>  {
     private _repository: Repository<T>;

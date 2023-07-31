@@ -1,5 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { GenericRepository } from '../generic-repository/generic.repository';
+import { FindOptionsWhere} from 'typeorm'
+
 // import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../entity/user.entity';
 
@@ -16,8 +18,8 @@ export class UserDataSource {
         // return null as any
     }
 
-    findByEmail(email: string): Promise<User | null> {
-        return this.userRepository.findOneBy({ email })
+    findByOption(option: FindOptionsWhere<User>): Promise<User | null> {
+        return this.userRepository.findOneBy(option)
         return null as any
     }
 

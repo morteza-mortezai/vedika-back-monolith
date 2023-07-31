@@ -7,7 +7,7 @@ export class UserController {
   constructor( private readonly userUsecase: UserUsecase) { }
 
   @Post()
-  login(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: CreateUserDto) {
     return this.userUsecase.create(createUserDto)
   }
 }
