@@ -27,6 +27,12 @@ export class User {
 
     @Column({
         nullable: false,
+    })
+    @IsEmail()
+    password: string;
+
+    @Column({
+        nullable: false,
         default: '',
     })
     phone: string;

@@ -6,7 +6,7 @@ import { validationSchema } from './environment.validate'
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath:['./env/.db.env','./env/.app.env'],
+      envFilePath:['./env/.db.env','./env/.app.env','./env/.jwt.env'],
       validationSchema,
       cache: true,
     })

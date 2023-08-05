@@ -1,12 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { UserDataSource } from 'src/persistent/data-source/user.data-source';
+import { UserUsecase } from './user.usecase';
+import { User } from 'src/persistent/entity/user.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthUsecase {
   constructor(
-    private readonly userDataSource: UserDataSource
+    private readonly userUsecase: UserUsecase,
+    private readonly jwtService: JwtService
   ) { }
-  signIn(email:string,password:string) {
-   return this.userDataSource.findByOption({email})
+  async validateUser(email: string, password: string) {
+    const user = await this.userUsecase.findOne(email)
+    if (user && user.password == password) {
+      const { password, ...result } = user
+      return result
+    }
+    return null
+  }
+  async login(user: User) {
+    const payload = { eamil: user.email, password: user.password }
+    return { access_token: this.jwtService.sign(payload) }
   }
 }
