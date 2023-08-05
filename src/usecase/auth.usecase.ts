@@ -18,7 +18,7 @@ export class AuthUsecase {
     return null
   }
   async login(user: User) {
-    const payload = { eamil: user.email, password: user.password }
+    const payload = { email: user.email, userId: user.id }
     return { access_token: this.jwtService.sign(payload) }
   }
 }
