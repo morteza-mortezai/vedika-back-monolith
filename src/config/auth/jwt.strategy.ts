@@ -15,6 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy){
     }
     async validate(payload:any){
         // we could look for revoked tokens here and so on
-        return  { userId: payload.sub, email: payload.email };
+        return  { id: payload.userId, email: payload.email };
     }
 }
