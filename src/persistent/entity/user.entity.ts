@@ -1,5 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsEmail } from "class-validator"
+export enum UserRole {
+    ADMIN = "admin",
+    USER = "user",
+    Editor="editor"
+}
 @Entity()
 export class User {
 
@@ -36,4 +41,10 @@ export class User {
         default: '',
     })
     phone: string;
+
+    @Column({
+        type: "simple-array",
+        // enum: UserRole,
+    })
+    rolles:Array<UserRole> ;
 }
